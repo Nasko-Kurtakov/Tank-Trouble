@@ -6,7 +6,7 @@ var path = require('path');
 const bodyParser = require("body-parser");
 // var baseDir = __dirname.slice(0, __dirname.lastIndexOf(path.sep)) + path.sep + "tanktrouble";
 var baseDir = __dirname + path.sep + "tanktrouble";
-var port = 8080;
+var port = process.env.PORT || 6969;
 
 app.use("/", express.static(baseDir));
 app.use("/assets", express.static(baseDir + "/assets"));
