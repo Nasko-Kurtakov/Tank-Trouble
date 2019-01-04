@@ -12,7 +12,9 @@
   "dependencies": {
     "express": "^4.16.4",
     "socket.io": "^2.2.0",
-    "typescript": "^3.2.1"
+    "typescript": "^3.2.1",
+    "knockout": "^3.4.2",
+    "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "^10.12.12"
