@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 var baseDir = __dirname + path.sep + "tanktrouble";
 var port = 8080;
 
+app.use("/", express.static(baseDir));
 app.use("/assets", express.static(baseDir + "/assets"));
 app.use("/css", express.static(baseDir + "/css"));
 app.use("/external", express.static(baseDir + "/external"));
