@@ -13,7 +13,7 @@ app.use("/assets", express.static(baseDir + "/assets"));
 app.use("/css", express.static(baseDir + "/css"));
 app.use("/external", express.static(baseDir + "/external"));
 app.use("/js", express.static(baseDir + "/js"));
-app.use("/node_modules", express.static(baseDir + "/node_modules"));
+// app.use("/node_modules", express.static(baseDir + "/node_modules"));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
