@@ -52,12 +52,14 @@ class Game {
         });
     }
     private opponentMove = (data) => {
+        console.log("opponent move");
         this.opponent().x = data.coords.x;
         this.opponent().y = data.coords.y;
         this.opponent().angle = data.angle
     }
 
     public notifyMovement = () => {
+        console.log("notify movement");
         let data = {
             player: this.id,
             coords: {
@@ -74,6 +76,7 @@ class Game {
     }
 
     private opponentFire = () => {
+        console.log("fire from opponent");
         this.createBullet(this.opponent());
     }
 
@@ -129,7 +132,7 @@ class Game {
     private bulletCollided(bullet, gridLine) {
         var angle = Phaser.Math.radToDeg(bullet.body.angle);
         if (bullet.body.touching.up) {
-            angle = -angle
+            angle = -angle;
         }
         if (bullet.body.touching.down) {
             angle = -angle;
@@ -153,11 +156,6 @@ class Game {
         }
     }
 
-    private displayScore(isPlayerOne) {
-        this.restartScreen(true);
-        document.getElementById('winner').innerHTML = isPlayerOne ? 'II' : 'I';
-    }
-
     private stopPlayer(player) {
         player.body.velocity.x = 0;
         player.body.velocity.y = 0;
@@ -169,18 +167,34 @@ class Game {
         this.stopPlayer(this.opponent());
         this.bullets.exists = false;
         this.isGameOver(true);
-        player.isPlayerOne ? this.opponent().score(this.opponent().score() + 1) : this.player().score(this.player().score() + 1);
-        this.displayScore(player.isPlayerOne);
+
+        if (this.id == 1) {
+            if (player.key == 'player') {
+                this.opponent().score(this.opponent().score() + 1);
+            }
+            else if (player.key == 'opponent') {
+                this.player().score(this.player().score() + 1);
+            }
+        }
+        if (this.id == 2) {
+            if (player.key == 'player') {
+                this.player().score(this.player().score() + 1);
+            }
+            else if (player.key == 'opponent') {
+                this.opponent().score(this.opponent().score() + 1);
+            }
+        }
+        this.restartScreen(true);
     }
 
     public startGame() {
-        this.playerReady(true);        
+        this.playerReady(true);
         game = new Phaser.Game(this.gridInfo().arenaWidth + 2, this.gridInfo().arenaHeight + 2, Phaser.CANVAS, "arena", {
             preload: this.preload.bind(this),
             create: this.create.bind(this),
             update: this.update.bind(this),
         }, false, true);
-        this.socket.emit('playerReady',sessionStorage["userId"]);
+        this.socket.emit('playerReady', sessionStorage["userId"]);
     }
 
     private preload() {
