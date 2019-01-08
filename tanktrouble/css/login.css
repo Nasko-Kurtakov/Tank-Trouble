@@ -1,3 +1,25 @@
+body {
+    font-size: 1em;
+    line-height: 1.5; 
+    background-image: url(../assets/Wiki-background.png);
+    font-family: 'Helvetica Neue', Helvetica, Arial, serif;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    color: #6d6d6d;
+  }
+
+.box{
+    background-color: white;
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    margin-top: -75px;
+    margin-left: -125px;
+    height: 150px;
+    position: absolute;
+}
+
 .loginBtn {
     box-sizing: border-box;
     position: relative;
